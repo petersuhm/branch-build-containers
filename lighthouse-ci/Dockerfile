@@ -2,6 +2,7 @@ FROM node:10
 
 # Install utilities
 RUN apt-get update --fix-missing && apt-get -y upgrade
+RUN apt-get install zip
 
 # Install latest chrome stable package.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
