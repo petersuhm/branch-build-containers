@@ -16,6 +16,7 @@ do
     excludes="$excludes -path ./$dir -prune -o"
 done
 
+error=false
 for file in `find $path $excludes -type f -name '*.php'`
 do
     EXTENSION="${file##*.}"
@@ -26,7 +27,14 @@ do
 
         if [ "$RESULTS" != "No syntax errors detected in $file" ]
         then
+            error=true
             echo $RESULTS
         fi
     fi
 done
+
+if [ "$error" = true ] ; then
+    exit 1
+else
+    exit 0
+fi
